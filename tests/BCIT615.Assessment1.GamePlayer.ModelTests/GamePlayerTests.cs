@@ -1,7 +1,8 @@
-﻿using BCIT615.Assessment1.GamePlayer.Model;
+﻿using BCIT615.Assessment1.GamePlayer;
+using GamePlayerClass = BCIT615.Assessment1.GamePlayer.Model.GamePlayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BCIT615.Assessment1.GamePlayer.ModelTests;
+namespace BCIT615.Assessment1.GamePlayerTests;
 
 [TestClass]
 public sealed class GamePlayerTests
@@ -9,7 +10,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void NewGame_HasCorrectInitialState()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         Assert.AreEqual(new Position(5, 0), game.StartPosition);
         Assert.AreEqual(new Position(0, 5), game.TargetPosition);
@@ -21,7 +22,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_RookCanMoveHorizontally()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(5, 2));
 
@@ -33,7 +34,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_RookCannotMoveDiagonally()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(4, 1));
 
@@ -44,7 +45,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_RookCannotMoveThroughBlockingPiece()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(5, 5));
 
@@ -55,7 +56,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_OutOfBounds_ReturnsOutOfBounds()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(6, 0));
 
@@ -66,7 +67,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_ToOccupiedPosition_ReturnsInvalidDestination()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(5, 3));
 
@@ -77,7 +78,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_ValidMove_IsAddedToMoveHistory()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         var result = game.TryMove(new Position(4, 0));
 
@@ -95,7 +96,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_ReachingTarget_CompletesGame()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         // Move the rook up to row 0.
         Assert.AreEqual(
@@ -113,7 +114,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void TryMove_AfterCompletion_IsRejected()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         game.TryMove(new Position(0, 0));
         game.TryMove(new Position(0, 5));
@@ -127,7 +128,7 @@ public sealed class GamePlayerTests
     [TestMethod]
     public void Restart_RestoresInitialStateAndClearsHistory()
     {
-        var game = new GamePlayer();
+        var game = new GamePlayerClass();
 
         game.TryMove(new Position(4, 0));
         game.TryMove(new Position(3, 0));

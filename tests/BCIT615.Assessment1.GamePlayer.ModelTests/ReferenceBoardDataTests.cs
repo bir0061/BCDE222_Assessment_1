@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using BCIT615.Assessment1.GamePlayer.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

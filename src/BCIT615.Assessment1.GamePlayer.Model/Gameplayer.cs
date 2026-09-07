@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BCIT615.Assessment1.GamePlayer;
 
 namespace BCIT615.Assessment1.GamePlayer.Model;
@@ -9,7 +8,7 @@ namespace BCIT615.Assessment1.GamePlayer.Model;
 /// Maintains the current position, target position,
 /// board state and history of successful moves.
 /// </summary>
-internal class GamePlayer : IGamePlayer
+public class GamePlayer : IGamePlayer
 {
     private readonly Dictionary<Position, PieceType> _pieces;
     private readonly List<MoveRecord> _moveHistory;
@@ -23,7 +22,7 @@ internal class GamePlayer : IGamePlayer
     public bool IsComplete { get; private set; }
 
     public IReadOnlyList<MoveRecord> MoveHistory =>
-        _moveHistory;
+        _moveHistory.AsReadOnly();
 
     /// <summary>
     /// Creates a new Game Player using the supplied reference board.
@@ -166,8 +165,8 @@ internal class GamePlayer : IGamePlayer
         Position from,
         Position to)
     {
-        int rowDifference = Math.Abs(to.Row - from.Row);
-        int columnDifference = Math.Abs(to.Column - from.Column);
+        int rowDifference = System.Math.Abs(to.Row - from.Row);
+        int columnDifference = System.Math.Abs(to.Column - from.Column);
 
         return piece switch
         {
@@ -210,8 +209,8 @@ internal class GamePlayer : IGamePlayer
             return false;
         }
 
-        int rowDirection = Math.Sign(to.Row - from.Row);
-        int columnDirection = Math.Sign(to.Column - from.Column);
+        int rowDirection = System.Math.Sign(to.Row - from.Row);
+        int columnDirection = System.Math.Sign(to.Column - from.Column);
 
         int currentRow = from.Row + rowDirection;
         int currentColumn = from.Column + columnDirection;

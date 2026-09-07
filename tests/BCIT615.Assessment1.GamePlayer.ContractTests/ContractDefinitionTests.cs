@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BCIT615.Assessment1.GamePlayer.ContractTests;
